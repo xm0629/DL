@@ -48,7 +48,7 @@ def train():
     batch_size = 8
     criterion = torch.nn.BCELoss()
     optimizer = optim.Adam(model.parameters())
-    liver_dataset = LiverDataset("data/train",transform=x_transforms,target_transform=y_transforms)
+    liver_dataset = LiverDataset("./../data/train",transform=x_transforms,target_transform=y_transforms)
     dataloaders = DataLoader(liver_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
     train_model(model, criterion, optimizer, dataloaders)
 
@@ -56,7 +56,7 @@ def train():
 def infer():
     model = Unet(3, 1)
     model.load_state_dict(torch.load('weights_19.pth',map_location='cpu'))
-    liver_dataset = LiverDataset("data/val", transform=x_transforms,target_transform=y_transforms)
+    liver_dataset = LiverDataset("./../data/val", transform=x_transforms,target_transform=y_transforms)
     dataloaders = DataLoader(liver_dataset, batch_size=1)
     import matplotlib.pyplot as plt
     plt.ion()
