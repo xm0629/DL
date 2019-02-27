@@ -48,7 +48,7 @@ def train():
     batch_size = 8
     criterion = torch.nn.BCELoss()
     optimizer = optim.Adam(model.parameters())
-    liver_dataset = LiverDataset("/home/xm/Program/ALL-Data/unetdata/train",transform=x_transforms,target_transform=y_transforms)
+    liver_dataset = LiverDataset("/home/xm/Program/ALL-Data/unetdata/test",transform=x_transforms,target_transform=y_transforms)
     dataloaders = DataLoader(liver_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
     train_model(model, criterion, optimizer, dataloaders)
 
